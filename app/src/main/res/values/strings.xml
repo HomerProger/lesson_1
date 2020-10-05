@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">lesson1</string>
+    <string name="moscow">Moscow</string>
+    <string name="sunny">Sunny</string>
+    <string name="windless">Windless</string>
+    <string name="st_petersburg">St. Petersburg</string>
+    <string name="novosibirsk">Novosibirsk</string>
+    <string name="krasnodar">Krasnodar</string>
+</resources>

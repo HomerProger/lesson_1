@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="moscow">Москва</string>
+    <string name="sunny">Солнечно</string>
+    <string name="windless">Штиль</string>
+    <string name="st_petersburg">Санкт-Петербург</string>
+    <string name="novosibirsk">Новосибирск</string>
+    <string name="krasnodar">Краснодар</string>
+</resources>
