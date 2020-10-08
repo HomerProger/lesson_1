@@ -6,5 +6,24 @@
     <string name="st_petersburg">St. Petersburg</string>
     <string name="novosibirsk">Novosibirsk</string>
     <string name="krasnodar">Krasnodar</string>
-
+    <string name="button">Сity selection</string>
+    <string name="city_selection">Сhoose a city</string>
+    <string name="button2">Go!</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="pressure">Pressure</string>
+    <string name="choose_parameter">Choose parameter</string>
+    <string-array name="cities">
+        <item>Moscow</item>
+        <item>St.Petersburg</item>
+        <item>Novosibirsk</item>
+        <item>Nizhny Novgorod</item>
+        <item>Ekaterinburg</item>
+        <item>Samara</item>
+        <item>Omsk</item>
+        <item>Kazanк</item>
+        <item>Ufa</item>
+        <item>Chelyabinsk</item>
+        <item>Rostov-on-Don</item>
+        <item>Perm</item>
+    </string-array>
 </resources>

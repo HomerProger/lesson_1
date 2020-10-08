@@ -6,5 +6,24 @@
     <string name="st_petersburg">Санкт-Петербург</string>
     <string name="novosibirsk">Новосибирск</string>
     <string name="krasnodar">Краснодар</string>
-
+    <string name="button">Выбрать город</string>
+    <string name="city_selection">Введите название города</string>
+    <string name="button2">Перейти</string>
+    <string name="precipitation">Осадки</string>
+    <string name="pressure">Давление</string>
+    <string name="choose_parameter">Выбрать параметр</string>
+    <string-array name="cities">
+        <item>Москва</item>
+        <item>Санкт-Петербург</item>
+        <item>Новосибирск</item>
+        <item>Нижний Новгород</item>
+        <item>Екатеринбург</item>
+        <item>Самара</item>
+        <item>Омск</item>
+        <item>Казань</item>
+        <item>Уфа</item>
+        <item>Челябинск</item>
+        <item>Ростов-на-Дону</item>
+        <item>Пермь</item>
+    </string-array>
 </resources>
