@@ -21,10 +21,10 @@ public class CitySelection extends Activity {
     final String LOG_TAG = "myLogs";
     private static final String KEY_CHECK_BOX1 = "KEY_CHECK_BOX1";
     private static final String KEY_CHECK_BOX2 = "KEY_CHECK_BOX2";
-    boolean check_box_state1 = false;
-    boolean check_box_state2 = false;
-    CheckBox checkBox1= findViewById(R.id.precipitation);
-    CheckBox checkBox2= findViewById(R.id.pressure);
+    boolean check_box_state1;
+    boolean check_box_state2;
+    CheckBox checkBox1;
+    CheckBox checkBox2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +52,12 @@ public class CitySelection extends Activity {
             check_box_state1 = savedInstanceState.getBoolean(KEY_CHECK_BOX1);
             check_box_state2 =savedInstanceState.getBoolean(KEY_CHECK_BOX2);
         }
+        checkBox1= findViewById(R.id.precipitation);
+        checkBox2= findViewById(R.id.pressure);
         checkBox1.setChecked(check_box_state1);
         checkBox2.setChecked(check_box_state2);
         Toast.makeText(getApplicationContext(), instanceState + " - onCreate()", Toast.LENGTH_SHORT).show();
-        Log.d(LOG_TAG, "CitySelection_onCreate");
+        Log.d(LOG_TAG, instanceState+"CitySelection_onCreate");
     }
 
     @Override
