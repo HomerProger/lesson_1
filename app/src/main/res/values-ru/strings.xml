@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Погодное приложение</string>
     <string name="moscow">Москва</string>
     <string name="sunny">Солнечно</string>
     <string name="windless">Штиль</string>
@@ -12,6 +13,7 @@
     <string name="precipitation">Осадки</string>
     <string name="pressure">Давление</string>
     <string name="choose_parameter">Выбрать параметр</string>
+    <string name="wind">Ветер</string>
     <string-array name="cities">
         <item>Москва</item>
         <item>Санкт-Петербург</item>
