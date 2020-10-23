@@ -21,11 +21,14 @@ public class CitySelection extends Activity implements Constants {
     final String LOG_TAG = "myLogs";
     private static final String KEY_CHECK_BOX1 = "KEY_CHECK_BOX1";
     private static final String KEY_CHECK_BOX2 = "KEY_CHECK_BOX2";
+    private static final String KEY_CHECK_BOX3 = "KEY_CHECK_BOX3";
     boolean check_box_state1;
     boolean check_box_state2;
+    boolean check_box_state3;
     CheckBox checkBox1;
     CheckBox checkBox2;
     CheckBox checkBox3;
+
     Parcel parcel;
 
     @Override
@@ -43,10 +46,11 @@ public class CitySelection extends Activity implements Constants {
 
         Button button2 = findViewById(R.id.button2);
         button2.setOnClickListener(v -> {
-            checkBox1 = findViewById(R.id.precipitation);
-            checkBox2 = findViewById(R.id.pressure);
-            checkBox3=findViewById(R.id.wind);
+
             parcel=new Parcel();
+            checkBox1= findViewById(R.id.precipitation);
+            checkBox2=findViewById(R.id.pressure);
+            checkBox3=findViewById(R.id.wind);
             parcel.cityName=autoCompleteTextView.getText().toString();
             parcel.precipitationMark=checkBox1.isChecked();
             parcel.pressureMark=checkBox2.isChecked();
@@ -65,10 +69,12 @@ public class CitySelection extends Activity implements Constants {
             instanceState = "CitySelection Повторный запуск!";
             check_box_state1 = savedInstanceState.getBoolean(KEY_CHECK_BOX1);
             check_box_state2 = savedInstanceState.getBoolean(KEY_CHECK_BOX2);
+            check_box_state3=savedInstanceState.getBoolean(KEY_CHECK_BOX3);
         }
 
-        checkBox1.setChecked(check_box_state1);
-        checkBox2.setChecked(check_box_state2);
+//        checkBox1.setChecked(check_box_state1);
+//        checkBox2.setChecked(check_box_state2);
+//        checkBox3.setChecked(check_box_state3);
         Toast.makeText(getApplicationContext(), instanceState + " - onCreate()", Toast.LENGTH_SHORT).show();
         Log.d(LOG_TAG, instanceState + "CitySelection_onCreate");
     }
@@ -107,6 +113,7 @@ public class CitySelection extends Activity implements Constants {
         super.onSaveInstanceState(saveInstanceState);
         saveInstanceState.putBoolean(KEY_CHECK_BOX1, checkBox1.isChecked());
         saveInstanceState.putBoolean(KEY_CHECK_BOX2, checkBox2.isChecked());
+        saveInstanceState.putBoolean(KEY_CHECK_BOX3, checkBox2.isChecked());
         Toast.makeText(getApplicationContext(), "CitySelection onSaveInstanceState()", Toast.LENGTH_SHORT).show();
         Log.d(LOG_TAG, "CitySelection_onSaveInstanceState");
     }
