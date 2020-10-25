@@ -16,7 +16,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements Constants {
     final String LOG_TAG = "myLogs";
     private final static int REQUEST_CODE = 34;
-
+Parcel parcel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,16 +47,18 @@ public class MainActivity extends AppCompatActivity implements Constants {
             return;
         }
         if (resultCode == RESULT_OK) {
-            Parcel parcel = (Parcel) getIntent().getExtras().getSerializable(KEY);
-            TextView cityName = findViewById(R.id.textView);
-            LinearLayout linearLayout1 = findViewById(R.id.precipitationLinearLayout);
-            LinearLayout linearLayout2 = findViewById(R.id.pressureLinearLayout);
-            LinearLayout linearLayout3 = findViewById(R.id.windLinearLayout);
 
-            cityName.setText(parcel.cityName);
-            linearLayout1.setEnabled(parcel.precipitationMark);
-            linearLayout2.setEnabled(parcel.pressureMark);
-            linearLayout3.setEnabled(parcel.windMark);
+            Parcel parcel;
+            parcel = (Parcel) getIntent().getExtras().getSerializable(KEY);
+//            TextView cityName = findViewById(R.id.textView);
+//            LinearLayout linearLayout1 = findViewById(R.id.precipitationLinearLayout);
+//            LinearLayout linearLayout2 = findViewById(R.id.pressureLinearLayout);
+//            LinearLayout linearLayout3 = findViewById(R.id.windLinearLayout);
+//
+//            cityName.setText(parcel.cityName);
+//            linearLayout1.setEnabled(parcel.precipitationMark);
+//            linearLayout2.setEnabled(parcel.pressureMark);
+//            linearLayout3.setEnabled(parcel.windMark);
         }
     }
 

@@ -19,9 +19,9 @@ import java.util.List;
 
 public class CitySelection extends Activity implements Constants {
     final String LOG_TAG = "myLogs";
-    private static final String KEY_CHECK_BOX1 = "KEY_CHECK_BOX1";
-    private static final String KEY_CHECK_BOX2 = "KEY_CHECK_BOX2";
-    private static final String KEY_CHECK_BOX3 = "KEY_CHECK_BOX3";
+    static final String KEY_CHECK_BOX1 = "KEY_CHECK_BOX1";
+    static final String KEY_CHECK_BOX2 = "KEY_CHECK_BOX2";
+    static final String KEY_CHECK_BOX3 = "KEY_CHECK_BOX3";
     boolean check_box_state1;
     boolean check_box_state2;
     boolean check_box_state3;
@@ -51,7 +51,7 @@ public class CitySelection extends Activity implements Constants {
             checkBox1= findViewById(R.id.precipitation);
             checkBox2=findViewById(R.id.pressure);
             checkBox3=findViewById(R.id.wind);
-            parcel.cityName=autoCompleteTextView.getText().toString();
+            parcel.cityName= autoCompleteTextView.getText().toString();
             parcel.precipitationMark=checkBox1.isChecked();
             parcel.pressureMark=checkBox2.isChecked();
             parcel.windMark=checkBox3.isChecked();
@@ -70,11 +70,11 @@ public class CitySelection extends Activity implements Constants {
             check_box_state1 = savedInstanceState.getBoolean(KEY_CHECK_BOX1);
             check_box_state2 = savedInstanceState.getBoolean(KEY_CHECK_BOX2);
             check_box_state3=savedInstanceState.getBoolean(KEY_CHECK_BOX3);
+            checkBox1.setChecked(check_box_state1);
+            checkBox2.setChecked(check_box_state2);
+            checkBox3.setChecked(check_box_state3);
         }
 
-//        checkBox1.setChecked(check_box_state1);
-//        checkBox2.setChecked(check_box_state2);
-//        checkBox3.setChecked(check_box_state3);
         Toast.makeText(getApplicationContext(), instanceState + " - onCreate()", Toast.LENGTH_SHORT).show();
         Log.d(LOG_TAG, instanceState + "CitySelection_onCreate");
     }
