@@ -55,6 +55,7 @@ Parcel parcel;
             LinearLayout linearLayout2 = findViewById(R.id.PressureLinearLayout);
             LinearLayout linearLayout3 = findViewById(R.id.WindLinearLayout);
 
+
             cityName.setText(parcel.cityName);
             if(!parcel.precipitationMark){
                 linearLayout1.setVisibility(View.INVISIBLE);

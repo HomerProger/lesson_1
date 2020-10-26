@@ -47,6 +47,7 @@ public class CitySelection extends Activity implements Constants {
         Button button2 = findViewById(R.id.button2);
         button2.setOnClickListener(v -> {
 
+
             parcel=new Parcel();
             checkBox1= findViewById(R.id.precipitation);
             checkBox2=findViewById(R.id.pressure);
