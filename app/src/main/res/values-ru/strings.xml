@@ -9,11 +9,12 @@
     <string name="krasnodar">Краснодар</string>
     <string name="button">Выбрать город</string>
     <string name="city_selection">Введите название города</string>
-    <string name="button2">Перейти</string>
+    <string name="button1">Перейти</string>
     <string name="precipitation">Осадки</string>
     <string name="pressure">Давление</string>
     <string name="choose_parameter">Выбрать параметр</string>
     <string name="wind">Ветер</string>
+    <string name="temperature">Температура</string>
     <string-array name="cities">
         <item>Москва</item>
         <item>Санкт-Петербург</item>

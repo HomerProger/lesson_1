@@ -21,7 +21,7 @@ Parcel parcel;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.button1);
 
         button.setOnClickListener(v -> {
                     Intent intent = new Intent(MainActivity.this, CitySelection.class);
@@ -49,16 +49,28 @@ Parcel parcel;
         if (resultCode == RESULT_OK) {
 
             Parcel parcel;
-            parcel = (Parcel) getIntent().getExtras().getSerializable(KEY);
-//            TextView cityName = findViewById(R.id.textView);
-//            LinearLayout linearLayout1 = findViewById(R.id.precipitationLinearLayout);
-//            LinearLayout linearLayout2 = findViewById(R.id.pressureLinearLayout);
-//            LinearLayout linearLayout3 = findViewById(R.id.windLinearLayout);
-//
-//            cityName.setText(parcel.cityName);
-//            linearLayout1.setEnabled(parcel.precipitationMark);
-//            linearLayout2.setEnabled(parcel.pressureMark);
-//            linearLayout3.setEnabled(parcel.windMark);
+            parcel = (Parcel) data.getExtras().getSerializable(KEY);
+            TextView cityName = findViewById(R.id.textView1);
+            LinearLayout linearLayout1 = findViewById(R.id.PrecipitationLinearLayout);
+            LinearLayout linearLayout2 = findViewById(R.id.PressureLinearLayout);
+            LinearLayout linearLayout3 = findViewById(R.id.WindLinearLayout);
+
+            cityName.setText(parcel.cityName);
+            if(!parcel.precipitationMark){
+                linearLayout1.setVisibility(View.INVISIBLE);
+            }else {
+                linearLayout1.setVisibility(View.VISIBLE);
+            }
+            if(!parcel.pressureMark){
+                linearLayout2.setVisibility(View.INVISIBLE);
+            }else {
+                linearLayout2.setVisibility(View.VISIBLE);
+            }
+            if(!parcel.windMark){
+                linearLayout3.setVisibility(View.INVISIBLE);
+            }else {
+                linearLayout3.setVisibility(View.VISIBLE);
+            }
         }
     }
 
