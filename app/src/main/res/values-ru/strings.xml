@@ -15,6 +15,8 @@
     <string name="choose_parameter">Выбрать параметр</string>
     <string name="wind">Ветер</string>
     <string name="temperature">Температура</string>
+    <string name="go">Вперед!</string>
+    <string name="enter_city">Введите город</string>
     <string-array name="cities">
         <item>Москва</item>
         <item>Санкт-Петербург</item>

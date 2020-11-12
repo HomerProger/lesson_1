@@ -14,6 +14,8 @@
     <string name="choose_parameter">Choose parameter</string>
     <string name="wind">Wind</string>
     <string name="temperature">Temperature</string>
+    <string name="go">Go!</string>
+    <string name="enter_city">Enter city</string>
     <string-array name="cities">
         <item>Moscow</item>
         <item>St.Petersburg</item>
