@@ -6,6 +6,7 @@ package com.example.lesson1;
 public class Parcel implements Serializable {
     private String cityName;
 
+
     public String getCityName() {
         return cityName;
     }

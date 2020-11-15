@@ -1,5 +1,6 @@
 package com.example.lesson1;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -26,6 +28,16 @@ public class CitySelectFragment extends Fragment implements Constants {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            // Восстановление текущей позиции.
+            parcel = (Parcel)savedInstanceState.getSerializable(CURRENT_CITY);
+        }
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState) {
 
         outState.putSerializable(CURRENT_CITY, parcel);
@@ -40,30 +52,37 @@ public class CitySelectFragment extends Fragment implements Constants {
         Button buttonGo = view.findViewById(R.id.button3);
 
 
-        initCitySelect(view, citySelect,buttonGo);
+        initCitySelect(view, citySelect, buttonGo);
+
     }
 
     private void initCitySelect(View view, AutoCompleteTextView autoCompleteTextView, Button button) {
 
 
         String[] cities = getResources().getStringArray(R.array.cities);
-         List<String> citiesList = Arrays.asList(cities);
+        List<String> citiesList = Arrays.asList(cities);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getContext(), android.R.layout.simple_dropdown_item_1line, citiesList);
         autoCompleteTextView.setAdapter(adapter);
+
         button.setOnClickListener((v) -> {
             parcel = new Parcel(autoCompleteTextView.getText().toString());
-//            parcel= new Parcel("egneogjneignen");
-showWhether(parcel);
+            autoCompleteTextView.setText(null);
+            autoCompleteTextView.clearFocus();
+            showWhether(parcel);
         });
+    }
+
+    private void showWhether(Parcel parcel) {
+        ShowWeatherFragment showWeatherFragment = ShowWeatherFragment.create(parcel);
+
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.showWeather, showWeatherFragment) // замена фрагмента
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
 
     }
-    private void showWhether(Parcel parcel){
-ShowWeatherFragment showWeatherFragment =ShowWeatherFragment.create(parcel);
-//        FragmentTransaction ft = getFragmentManager().beginTransaction();
-//        ft.replace(R.id.showWeather,showWeatherFragment);  // замена фрагмента
-//        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-//        ft.commit();
 
-    }
 }

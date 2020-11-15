@@ -3,25 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-<TextView
-    android:id="@+id/cityName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/moscow"
-    android:layout_gravity="center"
-    android:textSize="30dp"
-    android:paddingBottom="16dp"
- android:paddingTop="16dp"
-    />
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/cityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="12dp"
+         />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal"
         android:layout_weight="3"
-        >
+        android:orientation="horizontal">
 
 
         <TextView
@@ -29,9 +25,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/temperature"
             android:gravity="center"
-            />
+            android:text="@string/temperature" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -45,84 +40,76 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="+20 °C"
             android:gravity="center"
-            />
+            android:text="+20 °C" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal"
         android:layout_weight="3"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/precipitation"
             android:gravity="center"
-            />
+            android:text="@string/precipitation" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/sunny"
             android:gravity="center"
-            />
+            android:text="@string/sunny" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal"
         android:layout_weight="3"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/pressure"
             android:gravity="center"
-            />
+            android:text="@string/pressure" />
 
         <TextView
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="757"
             android:gravity="center"
-            />
+            android:text="757" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal"
         android:layout_weight="3"
-        >
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/wind"
             android:gravity="center"
-            />
+            android:text="@string/wind" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/windless"
             android:gravity="center"
-            />
+            android:text="@string/windless" />
     </LinearLayout>
 </LinearLayout>

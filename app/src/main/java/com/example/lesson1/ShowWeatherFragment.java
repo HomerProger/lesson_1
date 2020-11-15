@@ -1,9 +1,11 @@
 package com.example.lesson1;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
 
 
@@ -25,10 +27,12 @@ public class ShowWeatherFragment extends Fragment {
 
     public Parcel getParcel(){
 
-        Parcel parcel = (Parcel)getArguments().getSerializable(PARCEL);
+        if (getArguments()!=null){
+            return (Parcel)getArguments().getSerializable(PARCEL);
+        }else {
+            return new Parcel(getResources().getStringArray(R.array.cities)[0]);
+        }
 
-//        Parcel parcel=new Parcel("khbsvfbjsfv");
-        return parcel;
     }
     @Nullable
     @Override
@@ -37,12 +41,25 @@ public class ShowWeatherFragment extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putSerializable("KEY", getParcel());
+        super.onSaveInstanceState(outState);
+
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView cityName = view.findViewById(R.id.cityName);
-        Parcel parcel=getParcel();
-        cityName.setText(parcel.getCityName());
+        Parcel parcel;
 
+        if(savedInstanceState!=null){
+           parcel = (Parcel)savedInstanceState.getSerializable("KEY");
+        }else {
+            parcel = getParcel();
+        }
+        TextView cityName = view.findViewById(R.id.cityName);
+        cityName.setText(parcel.getCityName());
+        cityName.setTextSize(30);
     }
 
 
