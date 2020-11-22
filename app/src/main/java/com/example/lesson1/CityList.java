@@ -1,5 +1,6 @@
 package com.example.lesson1;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,23 +10,26 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import static android.view.Gravity.CENTER;
 
 public class CityList extends Fragment {
 Parcel parcel;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
+
         return inflater.inflate(R.layout.list_fragment, container, false);
 
     }
-
 
     @Override
     public void onViewCreated(View view, Bundle saveInstanceState) {
 
         super.onViewCreated(view, saveInstanceState);
-
         initList(view);
     }
 
@@ -37,6 +41,7 @@ String[] cities=getResources().getStringArray(R.array.cities);
             TextView tv=new TextView(getContext());
             tv.setText(city);
             tv.setTextSize(20);
+            tv.setGravity(CENTER);
             linearLayout.addView(tv);
             final int index=i;
             tv.setOnClickListener((v )->{
@@ -55,7 +60,7 @@ showWhether(parcel);
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.showWeather, showWeatherFragment) // замена фрагмента
+                .replace(R.id.frame_show, showWeatherFragment) // замена фрагмента
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();

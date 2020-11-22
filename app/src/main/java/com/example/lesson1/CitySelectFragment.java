@@ -23,6 +23,7 @@ public class CitySelectFragment extends Fragment implements Constants {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
+
         return inflater.inflate(R.layout.city_selection_fragment, container, false);
 
     }
@@ -48,10 +49,13 @@ public class CitySelectFragment extends Fragment implements Constants {
     public void onViewCreated(View view, Bundle saveInstanceState) {
 
         super.onViewCreated(view, saveInstanceState);
+
         AutoCompleteTextView citySelect = view.findViewById(R.id.autoCompleteTextView2);
         Button buttonGo = view.findViewById(R.id.button3);
 
-
+if(saveInstanceState==null){
+    showWhether(new Parcel(getResources().getStringArray(R.array.cities)[0]));
+}
         initCitySelect(view, citySelect, buttonGo);
 
     }
@@ -78,7 +82,7 @@ public class CitySelectFragment extends Fragment implements Constants {
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.showWeather, showWeatherFragment) // замена фрагмента
+                .replace(R.id.frame_show, showWeatherFragment) // замена фрагмента
                 .addToBackStack(null)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                 .commit();

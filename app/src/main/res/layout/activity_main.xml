@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="7">
+    android:weightSum="7"
+    android:background="@drawable/aaaaa"
+    >
+
 
     <fragment
 
@@ -13,11 +16,15 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <fragment
-        android:name="com.example.lesson1.ShowWeatherFragment"
-        android:id="@+id/showWeather"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6" />
+        android:layout_weight="6"
+        android:id="@+id/frame_show"
+
+        >
+
+
+    </FrameLayout>
 
 </LinearLayout>
