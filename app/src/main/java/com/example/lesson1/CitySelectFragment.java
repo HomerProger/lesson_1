@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.button.MaterialButton;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class CitySelectFragment extends Fragment implements Constants {
         super.onViewCreated(view, saveInstanceState);
 
         AutoCompleteTextView citySelect = view.findViewById(R.id.autoCompleteTextView2);
-        Button buttonGo = view.findViewById(R.id.button3);
+        MaterialButton buttonGo = view.findViewById(R.id.button3);
 
 if(saveInstanceState==null){
     showWhether(new Parcel(getResources().getStringArray(R.array.cities)[0]));
