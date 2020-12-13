@@ -29,19 +29,31 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lesson1.requestHistory.CityParcel;
+import com.example.lesson1.requestHistory.DataRequestHistory;
+import com.example.lesson1.requestHistory.RequestHistory;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
     private Toolbar toolbar;
+    DataRequestHistory dataRequestHistory=new DataRequestHistory();
+
+    public DataRequestHistory getDataRequestHistory() {
+        return dataRequestHistory;
+    }
+
     //Код для возвращение результата настроек  темы на главный экран
     private static final int SETTING_CODE = 88;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initDrawer(toolbar);
@@ -104,7 +116,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 // TODO:
                 break;
             case R.id.nav_history:
-
+                Intent intentHistory=new Intent(MainActivity.this, RequestHistory.class);
+                startActivity(intentHistory);
                 break;
             case R.id.nav_favorites:
                 break;

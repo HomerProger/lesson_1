@@ -11,7 +11,7 @@
     <string name="city_selection">Введите название города</string>
     <string name="button1">Перейти</string>
     <string name="precipitation">Осадки</string>
-    <string name="pressure">Давление, гПа</string>
+    <string name="pressure">Давление, мм рт.ст</string>
     <string name="choose_parameter">Выбрать параметр</string>
     <string name="wind">Ветер, м/с</string>
     <string name="temperature">Температура</string>
@@ -36,7 +36,15 @@
     <string name="change_theme">Сменить тему</string>
     <string name="humidity">Влажность,%</string>
     <string name="temp">Температура,°C</string>
-
+    <string name="temp_mark">°C </string>
+    <string name="humidity_mark">%</string>
+    <string name="wind_mark">м/с</string>
+    <string name="pressure_mark">мм рт.ст.</string>
+    <string name="request_history">История запросов</string>
+    <string name="attention">Внимание!</string>
+    <string name="empty_request">Пустой запрос. Введите город!</string>
+    <string name="not_found_city">Город не найден. Попробуйте еще раз</string>
+    <string name="not_connection">Нет соединения с сервером. Проверьте подключение к интернету</string>
 
     <string-array name="cities">
         <item>Москва</item>

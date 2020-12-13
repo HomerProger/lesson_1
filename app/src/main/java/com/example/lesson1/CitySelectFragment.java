@@ -1,10 +1,10 @@
 package com.example.lesson1;
 
-import android.content.res.Configuration;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -25,9 +23,11 @@ import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -44,6 +44,7 @@ public class CitySelectFragment extends Fragment implements Constants {
     private String pressure;
     private String humidity;
     private String windSpeed;
+    private static double CHANGE_TO_MM_RTUT= 0.750063755419211;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
@@ -96,13 +97,21 @@ public class CitySelectFragment extends Fragment implements Constants {
 
         button.setOnClickListener((v) -> {
             try {
-                System.out.println("Мы здесь");
+
+                if(((AutoCompleteTextView)getView().findViewById(R.id.autoCompleteTextView2))
+                        .getText().toString().isEmpty()){
+
+                    makeSimpleDialog(R.string.empty_request);
+
+                    return;
+                }
+
                 final String url = String.format("https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s",
-                        ((AutoCompleteTextView) getView().findViewById(R.id.autoCompleteTextView2)).getText().toString(),
-                        "cbceaf692f189faeab901270f83bea8f");
+                        ((AutoCompleteTextView) getView().findViewById(R.id.autoCompleteTextView2)).getText().toString(),BuildConfig.WEATHER_API_KEY);
                 final URL uri = new URL(url);
-//                final Handler handler = new Handler(); // Запоминаем основной поток
+                final Handler handler = new Handler(); // Запоминаем основной поток
                 new Thread(new Runnable() {
+
                     @RequiresApi(api = Build.VERSION_CODES.N)
                     public void run() {
                         HttpsURLConnection urlConnection = null;
@@ -115,21 +124,45 @@ public class CitySelectFragment extends Fragment implements Constants {
                             // преобразование данных запроса в модель
                             Gson gson = new Gson();
                             final WeatherRequest weatherRequest = gson.fromJson(result, WeatherRequest.class);
-                            System.out.println("температура в лондоне "+weatherRequest.getMain().getTemp());
 
-                            displayWeather(weatherRequest);
+                            displayWeather(weatherRequest, autoCompleteTextView);
+
                            showWhether(parcel);
                             // Возвращаемся к основному потоку
-//                            handler.post(new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    displayWeather(weatherRequest);
-//                                }
-//                            });
-                        } catch (Exception e) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    autoCompleteTextView.setText(null);
+                                    autoCompleteTextView.clearFocus();
+                                }
+                            });
+                        }
+                        catch (FileNotFoundException e) {
+                            Log.e(TAG, "Поймали ошибку FileNotFoundException", e);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    makeSimpleDialog(R.string.not_found_city);
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+                        catch (UnknownHostException e) {
+                            Log.e(TAG, "Поймали ошибку UnknownHostException", e);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    makeSimpleDialog(R.string.not_connection);
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+                        catch (Exception e) {
                             Log.e(TAG, "Fail connection", e);
                             e.printStackTrace();
-                        } finally {
+                        }
+
+                        finally {
                             if (null != urlConnection) {
                                 urlConnection.disconnect();
                             }
@@ -140,26 +173,51 @@ public class CitySelectFragment extends Fragment implements Constants {
                 Log.e(TAG, "Fail URI", e);
                 e.printStackTrace();
             }
-            autoCompleteTextView.setText(null);
-            autoCompleteTextView.clearFocus();
+//            autoCompleteTextView.setText(null);
+//            autoCompleteTextView.clearFocus();
 //            showWhether(parcel);
         });
     }
+    /**
+     * Метод создания диалогового окан с сообщением и кнопкой "ОК"
+     * @param message ссылка на ресурсы string с сообщением для диалогового окна
+     */
+    private void makeSimpleDialog(int message) {
+        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        builder.setTitle(R.string.attention).setMessage(message)
+                .setCancelable(false).setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }
+        );
+        AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     private String getLines (BufferedReader in){
         return in.lines().collect(Collectors.joining("\n"));
     }
 
-    private void displayWeather(WeatherRequest weatherRequest){
+    private void displayWeather(WeatherRequest weatherRequest, AutoCompleteTextView autoCompleteTextView){
 
-        cityName=weatherRequest.getName();
+        cityName=firstUpperCase(autoCompleteTextView.getText().toString());
         temperature =String.format("%.0f", weatherRequest.getMain().getTemp()-273);
-        pressure=String.format("%d", weatherRequest.getMain().getPressure());
+        pressure=String.format("%.0f", weatherRequest.getMain().getPressure()*CHANGE_TO_MM_RTUT);
         humidity=String.format("%d", weatherRequest.getMain().getHumidity());
-        windSpeed=String.format("%.0f", weatherRequest.getWind().getSpeed());
+        windSpeed=String.format("%.1f", weatherRequest.getWind().getSpeed());
+
 
         parcel=new Parcel(cityName,temperature,pressure,humidity,windSpeed);
 
+    }
+
+    public String firstUpperCase(String word){
+        if(word == null || word.isEmpty()) return ""; //или return word;
+        return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
     private void showWhether(Parcel parcel) {
         ShowWeatherFragment showWeatherFragment = ShowWeatherFragment.create(parcel);
