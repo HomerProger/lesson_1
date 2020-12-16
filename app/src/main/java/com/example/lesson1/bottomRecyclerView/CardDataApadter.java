@@ -1,4 +1,4 @@
-package com.example.lesson1.recyclerView;
+package com.example.lesson1.bottomRecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,49 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-   >
+    android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/inputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        >
-
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <AutoCompleteTextView
             android:id="@+id/autoCompleteTextView2"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="@string/enter_city"
+            android:layout_height="match_parent"
             android:gravity="bottom"
-
-
-
-
-            />
-
-
+            android:hint="@string/enter_city" />
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button3"
+        android:background="@color/darkSlateGrey"
         style="@style/MyButtonStyle"
-        app:cornerRadius="20dp"
-    app:backgroundTint="@color/Navy"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/go"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:rippleColor="@color/cardview_shadow_start_color"
-        android:layout_weight="4"
-        />
-</LinearLayout>
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:drawableLeft="@drawable/magnifier"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+   />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

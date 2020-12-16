@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -15,18 +14,15 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lesson1.recyclerView.CardDataApadter;
-import com.example.lesson1.recyclerView.CardDataSourceBuilder;
-import com.example.lesson1.recyclerView.DataSource;
+import com.example.lesson1.bottomRecyclerView.CardDataApadter;
+import com.example.lesson1.bottomRecyclerView.CardDataSourceBuilder;
+import com.example.lesson1.bottomRecyclerView.DataSource;
 import com.example.lesson1.requestHistory.CityParcel;
 import com.example.lesson1.requestHistory.DataRequestHistory;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class ShowWeatherFragment extends Fragment {

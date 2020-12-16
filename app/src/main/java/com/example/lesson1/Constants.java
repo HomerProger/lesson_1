@@ -5,5 +5,6 @@ public interface Constants {
 
 String CURRENT_CITY="CURRENT_CITY";
 String DATA_RH="DATA_RH";
+String NUMBER_OF_DAYS="7";
 
 }

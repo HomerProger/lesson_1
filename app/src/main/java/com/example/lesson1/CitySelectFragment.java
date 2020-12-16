@@ -44,7 +44,7 @@ public class CitySelectFragment extends Fragment implements Constants {
     private String pressure;
     private String humidity;
     private String windSpeed;
-    private static double CHANGE_TO_MM_RTUT= 0.750063755419211;
+    private static double CHANGE_TO_MM_RTUT = 0.750063755419211;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
@@ -96,18 +96,19 @@ public class CitySelectFragment extends Fragment implements Constants {
 
 
         button.setOnClickListener((v) -> {
+            //Запрос на получение текущей погод
             try {
 
-                if(((AutoCompleteTextView)getView().findViewById(R.id.autoCompleteTextView2))
-                        .getText().toString().isEmpty()){
+                //Если пустой запрос, то вывести сообщение об этом
+                if (((AutoCompleteTextView) getView().findViewById(R.id.autoCompleteTextView2))
+                        .getText().toString().isEmpty()) {
 
                     makeSimpleDialog(R.string.empty_request);
-
                     return;
                 }
 
                 final String url = String.format("https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s",
-                        ((AutoCompleteTextView) getView().findViewById(R.id.autoCompleteTextView2)).getText().toString(),BuildConfig.WEATHER_API_KEY);
+                        ((AutoCompleteTextView) getView().findViewById(R.id.autoCompleteTextView2)).getText().toString(), BuildConfig.WEATHER_API_KEY);
                 final URL uri = new URL(url);
                 final Handler handler = new Handler(); // Запоминаем основной поток
                 new Thread(new Runnable() {
@@ -127,7 +128,7 @@ public class CitySelectFragment extends Fragment implements Constants {
 
                             displayWeather(weatherRequest, autoCompleteTextView);
 
-                           showWhether(parcel);
+                            showWhether(parcel);
                             // Возвращаемся к основному потоку
                             handler.post(new Runnable() {
                                 @Override
@@ -136,8 +137,7 @@ public class CitySelectFragment extends Fragment implements Constants {
                                     autoCompleteTextView.clearFocus();
                                 }
                             });
-                        }
-                        catch (FileNotFoundException e) {
+                        } catch (FileNotFoundException e) {
                             Log.e(TAG, "Поймали ошибку FileNotFoundException", e);
                             handler.post(new Runnable() {
                                 @Override
@@ -146,8 +146,7 @@ public class CitySelectFragment extends Fragment implements Constants {
                                 }
                             });
                             e.printStackTrace();
-                        }
-                        catch (UnknownHostException e) {
+                        } catch (UnknownHostException e) {
                             Log.e(TAG, "Поймали ошибку UnknownHostException", e);
                             handler.post(new Runnable() {
                                 @Override
@@ -156,13 +155,10 @@ public class CitySelectFragment extends Fragment implements Constants {
                                 }
                             });
                             e.printStackTrace();
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             Log.e(TAG, "Fail connection", e);
                             e.printStackTrace();
-                        }
-
-                        finally {
+                        } finally {
                             if (null != urlConnection) {
                                 urlConnection.disconnect();
                             }
@@ -173,17 +169,89 @@ public class CitySelectFragment extends Fragment implements Constants {
                 Log.e(TAG, "Fail URI", e);
                 e.printStackTrace();
             }
-//            autoCompleteTextView.setText(null);
-//            autoCompleteTextView.clearFocus();
-//            showWhether(parcel);
+//Запрос на получение прогноза погоды на 7 дней
+            try {
+
+                //Если пустой запрос, то вывести сообщение об этом
+
+                final String url = String.format("https://api.openweathermap.org/data/2.5/forecast/daily?q=%s&cnt=%s&appid=%s",
+                        ((AutoCompleteTextView) getView().findViewById(R.id.autoCompleteTextView2)).getText().toString(),NUMBER_OF_DAYS, BuildConfig.WEATHER_API_KEY);
+                final URL uri = new URL(url);
+                final Handler handler = new Handler(); // Запоминаем основной поток
+                new Thread(new Runnable() {
+
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    public void run() {
+                        HttpsURLConnection urlConnection = null;
+                        try {
+                            urlConnection = (HttpsURLConnection) uri.openConnection();
+                            urlConnection.setRequestMethod("GET"); // установка метода получения данных -GET
+                            urlConnection.setReadTimeout(10000); // установка таймаута - 10 000 миллисекунд
+                            BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream())); // читаем  данные в поток
+                            String result = getLines(in);
+                            // преобразование данных запроса в модель
+                            Gson gson = new Gson();
+                            final WeatherRequest weatherRequest = gson.fromJson(result, WeatherRequest.class);
+
+                            displayWeather(weatherRequest, autoCompleteTextView);
+
+                            showWhether(parcel);
+                            // Возвращаемся к основному потоку
+//                            handler.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    autoCompleteTextView.setText(null);
+//                                    autoCompleteTextView.clearFocus();
+//                                }
+//                            });
+                        } catch (FileNotFoundException e) {
+                            Log.e(TAG, "Поймали ошибку FileNotFoundException", e);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    makeSimpleDialog(R.string.not_found_city);
+                                }
+                            });
+                            e.printStackTrace();
+                        } catch (UnknownHostException e) {
+                            Log.e(TAG, "Поймали ошибку UnknownHostException", e);
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    makeSimpleDialog(R.string.not_connection);
+                                }
+                            });
+                            e.printStackTrace();
+                        } catch (Exception e) {
+                            Log.e(TAG, "Fail connection", e);
+                            e.printStackTrace();
+                        } finally {
+                            if (null != urlConnection) {
+                                urlConnection.disconnect();
+                            }
+                        }
+                    }
+                }).start();
+            } catch (MalformedURLException e) {
+                Log.e(TAG, "Fail URI", e);
+                e.printStackTrace();
+            }
+
+
+
+
+
+
         });
     }
+
     /**
      * Метод создания диалогового окан с сообщением и кнопкой "ОК"
+     *
      * @param message ссылка на ресурсы string с сообщением для диалогового окна
      */
     private void makeSimpleDialog(int message) {
-        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle(R.string.attention).setMessage(message)
                 .setCancelable(false).setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
@@ -193,32 +261,33 @@ public class CitySelectFragment extends Fragment implements Constants {
                     }
                 }
         );
-        AlertDialog alertDialog=builder.create();
+        AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private String getLines (BufferedReader in){
+    private String getLines(BufferedReader in) {
         return in.lines().collect(Collectors.joining("\n"));
     }
 
-    private void displayWeather(WeatherRequest weatherRequest, AutoCompleteTextView autoCompleteTextView){
+    private void displayWeather(WeatherRequest weatherRequest, AutoCompleteTextView autoCompleteTextView) {
 
-        cityName=firstUpperCase(autoCompleteTextView.getText().toString());
-        temperature =String.format("%.0f", weatherRequest.getMain().getTemp()-273);
-        pressure=String.format("%.0f", weatherRequest.getMain().getPressure()*CHANGE_TO_MM_RTUT);
-        humidity=String.format("%d", weatherRequest.getMain().getHumidity());
-        windSpeed=String.format("%.1f", weatherRequest.getWind().getSpeed());
+        cityName = firstUpperCase(autoCompleteTextView.getText().toString());
+        temperature = String.format("%.0f", weatherRequest.getMain().getTemp() - 273);
+        pressure = String.format("%.0f", weatherRequest.getMain().getPressure() * CHANGE_TO_MM_RTUT);
+        humidity = String.format("%d", weatherRequest.getMain().getHumidity());
+        windSpeed = String.format("%.1f", weatherRequest.getWind().getSpeed());
 
 
-        parcel=new Parcel(cityName,temperature,pressure,humidity,windSpeed);
+        parcel = new Parcel(cityName, temperature, pressure, humidity, windSpeed);
 
     }
 
-    public String firstUpperCase(String word){
-        if(word == null || word.isEmpty()) return ""; //или return word;
+    public String firstUpperCase(String word) {
+        if (word == null || word.isEmpty()) return ""; //или return word;
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
+
     private void showWhether(Parcel parcel) {
         ShowWeatherFragment showWeatherFragment = ShowWeatherFragment.create(parcel);
 

@@ -14,19 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-
+        android:screenOrientation="portrait"
         >
 
 
         <activity
-            android:name=".AboutActivity"
+            android:name=".menuToolbar.AboutActivity"
             android:label="@string/information" />
 
         <activity
             android:name=".requestHistory.RequestHistory"
             android:label="@string/request_history" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".menuToolbar.SettingsActivity"
             android:label="@string/settings" />
         <activity
             android:name=".MainActivity"
