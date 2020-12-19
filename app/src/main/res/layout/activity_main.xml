@@ -30,7 +30,7 @@
         <fragment
 
             android:id="@+id/citySelect"
-            android:name="com.example.lesson1.CitySelectFragment"
+            android:name="com.example.lesson1.fragments.CitySelectFragment"
             android:layout_width="match_parent"
             android:layout_height="60dp"
        />

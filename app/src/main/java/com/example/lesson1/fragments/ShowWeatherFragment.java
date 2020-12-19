@@ -1,4 +1,4 @@
-package com.example.lesson1;
+package com.example.lesson1.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lesson1.Parcel;
+import com.example.lesson1.R;
 import com.example.lesson1.bottomRecyclerView.CardDataApadter;
 import com.example.lesson1.bottomRecyclerView.CardDataSourceBuilder;
 import com.example.lesson1.bottomRecyclerView.DataSource;
@@ -27,9 +29,9 @@ import java.util.Locale;
 
 public class ShowWeatherFragment extends Fragment {
 
-    public static final String PARCEL = "parcel";
-    CityParcel cityParcel;
-   DataRequestHistory dataRequestHistory;
+    private static final String PARCEL = "parcel";
+    private CityParcel cityParcel;
+    private DataRequestHistory dataRequestHistory;
 
     public static ShowWeatherFragment create(Parcel parcel) {
         ShowWeatherFragment showWeatherFragment = new ShowWeatherFragment();
@@ -78,10 +80,10 @@ public class ShowWeatherFragment extends Fragment {
         } else {
             parcel = getParcel();
             cityName.setText(parcel.getCityName());
-            if(parcel.getTemperature()!=null) {
-                dataRequestHistory=new DataRequestHistory();
-                cityParcel=new CityParcel(parcel.getCityName(),getDate(),getTime(),parcel.getTemperature()+" "+getString(R.string.temp_mark));
-               dataRequestHistory.getCitiesList().add(cityParcel);
+            if (parcel.getTemperature() != null) {
+                dataRequestHistory = new DataRequestHistory();
+                cityParcel = new CityParcel(parcel.getCityName(), getDate(), getTime(), parcel.getTemperature() + " " + getString(R.string.temp_mark));
+                dataRequestHistory.getCitiesList().add(cityParcel);
                 temperature.setText(parcel.getTemperature() + "  " + getString(R.string.temp_mark));
                 temperature.setTextSize(26);
                 pressure.setText(parcel.getPressure() + "  " + getString(R.string.pressure_mark));
@@ -91,8 +93,7 @@ public class ShowWeatherFragment extends Fragment {
                 wind.setText(parcel.getWindSpeed() + "  " + getString(R.string.wind_mark));
                 wind.setTextSize(26);
             }
-            }
-
+        }
 
 
         initDataSource();

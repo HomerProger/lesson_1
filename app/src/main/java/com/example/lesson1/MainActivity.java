@@ -7,12 +7,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.lesson1.fragments.ShowWeatherFragment;
 import com.example.lesson1.menuToolbar.AboutActivity;
 import com.example.lesson1.menuToolbar.SettingsActivity;
 import com.example.lesson1.requestHistory.DataRequestHistory;
@@ -22,6 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
+   Parcel parcel;
     private Toolbar toolbar;
     DataRequestHistory dataRequestHistory=new DataRequestHistory();
 
@@ -39,6 +42,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initDrawer(toolbar);
+        if (savedInstanceState == null) {
+            parcel = new Parcel(getResources().getStringArray(R.array.cities)[0]);
+            showWhether(parcel);}
     }
 
     @Override
@@ -110,5 +116,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    private void showWhether(Parcel parcel) {
+        ShowWeatherFragment showWeatherFragment = ShowWeatherFragment.create(parcel);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_show, showWeatherFragment) // замена фрагмента
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
+
     }
 }
