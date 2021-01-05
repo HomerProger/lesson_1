@@ -1,9 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Погода</string>
     <string name="moscow">Москва</string>
     <string name="sunny">Солнечно</string>
     <string name="windless">Штиль</string>
     <string name="st_petersburg">Санкт-Петербург</string>
     <string name="novosibirsk">Новосибирск</string>
     <string name="krasnodar">Краснодар</string>
+    <string name="button">Выбрать город</string>
+    <string name="city_selection">Введите название города</string>
+    <string name="button1">Перейти</string>
+    <string name="precipitation">Осадки</string>
+    <string name="pressure">Давление, мм рт.ст</string>
+    <string name="choose_parameter">Выбрать параметр</string>
+    <string name="wind">Ветер, м/с</string>
+    <string name="temperature">Температура</string>
+    <string name="go">Вперед!</string>
+    <string name="enter_city">Введите город</string>
+    <string name="_10days">Прогноз погоды на 10 дней</string>
+    <string name="settings">Настройки</string>
+    <string name="information">О программе</string>
+    <string name="text_about_app">
+          Погодное приложение\n
+          Автор: Homerproger\n
+          2020 год
+    </string>
+    <string name="home">Домой</string>
+    <string name="history">История</string>
+    <string name="favorites">Избранные города</string>
+    <string name="additionally">Дополнительно</string>
+    <string name="info_nav">Информация о разработчике</string>
+    <string name="navigation_drawer_open">Открыть панель навигации</string>
+    <string name="navigation_drawer_close">Закрыть панель навигации</string>
+
+    <string name="change_theme">Сменить тему</string>
+    <string name="humidity">Влажность,%</string>
+    <string name="temp">Температура,°C</string>
+    <string name="temp_mark">°C </string>
+    <string name="humidity_mark">%</string>
+    <string name="wind_mark">м/с</string>
+    <string name="pressure_mark">мм рт.ст.</string>
+    <string name="request_history">История запросов</string>
+    <string name="attention">Внимание!</string>
+    <string name="empty_request">Пустой запрос. Введите город!</string>
+    <string name="not_found_city">Город не найден. Попробуйте еще раз</string>
+    <string name="not_connection">Нет соединения с сервером. Проверьте подключение к интернету</string>
+
+    <string-array name="cities">
+        <item>Москва</item>
+        <item>Санкт-Петербург</item>
+        <item>Новосибирск</item>
+        <item>Нижний Новгород</item>
+        <item>Екатеринбург</item>
+        <item>Самара</item>
+        <item>Омск</item>
+        <item>Казань</item>
+        <item>Уфа</item>
+        <item>Челябинск</item>
+        <item>Ростов-на-Дону</item>
+        <item>Пермь</item>
+    </string-array>
+    <string-array name="dates">
+        <item>20.11.2020</item>
+        <item>21.11.2020</item>
+        <item>22.11.2020</item>
+        <item>23.11.2020</item>
+        <item>24.11.2020</item>
+        <item>25.11.2020</item>
+        <item>26.11.2020</item>
+        <item>27.11.2020</item>
+        <item>28.11.2020</item>
+        <item>29.11.2020</item>
+        <item>30.11.2020</item>
+    </string-array>
+    <string-array name="days">
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
+    </string-array>
+    <string-array name="temperature">
+        <item>+1°C</item>
+        <item>0°C</item>
+        <item>-1°C</item>
+        <item>+1°C</item>
+        <item>+1°C</item>
+        <item>0°C</item>
+        <item>+3°C</item>
+        <item>-3°C</item>
+        <item>-4°C</item>
+        <item>-1°C</item>
+        <item>+2°C</item>
+    </string-array>
+    <string-array name="precipitation">
+        <item>Снег</item>
+        <item>Снег</item>
+        <item>Небольшой снег</item>
+        <item>Небольшой мокрый снег</item>
+        <item>Небольшой снег с дождем</item>
+        <item>Снег с дождем</item>
+        <item>Небольшой снег с дождем</item>
+        <item>Снег</item>
+        <item>Небольшой снег</item>
+        <item>Без осадков</item>
+        <item>Без осадков</item>
+    </string-array>
+
 </resources>
