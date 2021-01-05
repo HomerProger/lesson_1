@@ -21,7 +21,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 import static android.content.ContentValues.TAG;
 
-public class RequestHandler {
+public class Requester {
     Thread t;
     private String result;
     Context context;
@@ -30,7 +30,7 @@ public class RequestHandler {
         return result;
     }
 
-    public RequestHandler(Context context) {
+    public Requester(Context context) {
         this.context = context;
     }
 

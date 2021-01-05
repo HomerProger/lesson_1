@@ -12,28 +12,22 @@ public class DataWeather {
     private String pressure;
     private String humidity;
     private String windSpeed;
+    private static double CHANGE_TO_CELSIY=273.15;
     private static double CHANGE_TO_MM_RTUT = 0.750063755419211;
 
 
     /**
-     * @param result               - полученная с сервера информация о погоде в формате JSON
+     * @param weatherRequest- данные о погоде от retrofit
      * @param autoCompleteTextView - из этого параметра получаем значение города для отображения
      */
-    public Parcel initData(String result, AutoCompleteTextView autoCompleteTextView) {
-        WeatherRequest weatherRequest = getWeatherRequest(result);
+    public Parcel initData(WeatherRequest weatherRequest, AutoCompleteTextView autoCompleteTextView) {
 
         cityName = firstUpperCase(autoCompleteTextView.getText().toString());
-        temperature = String.format("%.0f", weatherRequest.getMain().getTemp() - 273);
+        temperature = String.format("%.0f", weatherRequest.getMain().getTemp() - CHANGE_TO_CELSIY);
         pressure = String.format("%.0f", weatherRequest.getMain().getPressure() * CHANGE_TO_MM_RTUT);
         humidity = String.format("%d", weatherRequest.getMain().getHumidity());
         windSpeed = String.format("%.1f", weatherRequest.getWind().getSpeed());
         return new Parcel(cityName, temperature, pressure, humidity, windSpeed);
-    }
-
-    private WeatherRequest getWeatherRequest(String result) {
-        Gson gson = new Gson();
-        final WeatherRequest weatherRequest = gson.fromJson(result, WeatherRequest.class);
-        return weatherRequest;
     }
 
     public String firstUpperCase(String word) {
