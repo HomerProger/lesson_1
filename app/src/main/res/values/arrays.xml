@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pictures">
+        <item>@drawable/a20_snow</item>
+        <item>@drawable/a21_snow</item>
+        <item>@drawable/a22_small_snow</item>
+        <item>@drawable/a23_small_snow</item>
+        <item>@drawable/a24_snow_rain</item>
+        <item>@drawable/a25_snow_rain</item>
+        <item>@drawable/a26_snow_rain</item>
+        <item>@drawable/a27_snow_rain</item>
+        <item>@drawable/a28_snow</item>
+        <item>@drawable/a29_without</item>
+        <item>@drawable/a30_without</item>
+    </array>
+
+
+</resources>
