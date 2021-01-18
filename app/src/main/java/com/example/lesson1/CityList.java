@@ -42,8 +42,8 @@ String[] cities=getResources().getStringArray(R.array.cities);
             linearLayout.addView(tv);
             final int index=i;
             tv.setOnClickListener((v )->{
-parcel=new Parcel(getResources().getStringArray(R.array.cities)[index]);
-showWhether(parcel);
+//parcel=new Parcel(getResources().getStringArray(R.array.cities)[index]);
+//showWhether(parcel);
 
             });
 

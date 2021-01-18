@@ -20,7 +20,7 @@ import com.example.lesson1.bottomRecyclerView.CardDataApadter;
 import com.example.lesson1.bottomRecyclerView.CardDataSourceBuilder;
 import com.example.lesson1.bottomRecyclerView.DataSource;
 import com.example.lesson1.requestHistory.CityParcel;
-import com.example.lesson1.requestHistory.DataRequestHistory;
+import com.example.lesson1.AppClass;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -31,7 +31,7 @@ public class ShowWeatherFragment extends Fragment {
 
     private static final String PARCEL = "parcel";
     private CityParcel cityParcel;
-    private DataRequestHistory dataRequestHistory;
+    private AppClass appClass;
 
     public static ShowWeatherFragment create(Parcel parcel) {
         ShowWeatherFragment showWeatherFragment = new ShowWeatherFragment();
@@ -81,9 +81,9 @@ public class ShowWeatherFragment extends Fragment {
             parcel = getParcel();
             cityName.setText(parcel.getCityName());
             if (parcel.getTemperature() != null) {
-                dataRequestHistory = new DataRequestHistory();
+                appClass = new AppClass();
                 cityParcel = new CityParcel(parcel.getCityName(), getDate(), getTime(), parcel.getTemperature() + " " + getString(R.string.temp_mark));
-                dataRequestHistory.getCitiesList().add(cityParcel);
+                appClass.getCitiesList().add(cityParcel);
                 temperature.setText(parcel.getTemperature() + "  " + getString(R.string.temp_mark));
                 temperature.setTextSize(26);
                 pressure.setText(parcel.getPressure() + "  " + getString(R.string.pressure_mark));

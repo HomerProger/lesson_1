@@ -2,8 +2,11 @@ package com.example.lesson1.fragments;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +22,11 @@ import com.example.lesson1.DataWeather;
 import com.example.lesson1.OpenWeather;
 import com.example.lesson1.Parcel;
 import com.example.lesson1.R;
-import com.example.lesson1.Requester;
 import com.example.lesson1.model.WeatherRequest;
+import com.example.lesson1.AppClass;
 
+import java.io.FileNotFoundException;
+import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,24 +36,22 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.content.ContentValues.TAG;
 import static com.example.lesson1.Constants.CURRENT_CITY;
 
 public class DialogFragment extends androidx.fragment.app.DialogFragment {
 
-    private Requester requestHandler;
     private DataWeather data;
-    private Parcel parcel;
+
     private AutoCompleteTextView autoCompleteTextView;
     private OpenWeather openWeather;
-    WeatherRequest weatherRequest;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_dialog, null);
-
-        return view;
+        return inflater.inflate(R.layout.fragment_dialog, null);
     }
 
 
@@ -67,30 +70,25 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
 
         if (savedInstanceState != null) {
             // Восстановление текущей позиции.
-            parcel = (Parcel) savedInstanceState.getSerializable(CURRENT_CITY);
+            AppClass.parcel = (Parcel) savedInstanceState.getSerializable(CURRENT_CITY);
         }
     }
 
     private View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            Context context = getContext();
             dismiss();
             //Если введен пустой запрос, проинформируем об этом в диалоговом окне
             if (autoCompleteTextView
                     .getText().toString().isEmpty()) {
 
-                makeSimpleDialog(R.string.empty_request);
+                makeSimpleDialog(R.string.empty_request, context);
                 return;
             } else {
-
-                initRetorfit();
-                requestRetrofit(autoCompleteTextView.getText().toString(), BuildConfig.WEATHER_API_KEY);
-                showWhether(parcel);
-
+                initRetrofit();
+                requestRetrofit(autoCompleteTextView.getText().toString(), BuildConfig.WEATHER_API_KEY, autoCompleteTextView, context);
             }
-            autoCompleteTextView.setText(null);
-            autoCompleteTextView.clearFocus();
-
         }
     };
 
@@ -99,8 +97,8 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
      *
      * @param message ссылка на ресурсы string с сообщением для диалогового окна
      */
-    private void makeSimpleDialog(int message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+    private void makeSimpleDialog(int message, Context context) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(R.string.attention).setMessage(message)
                 .setCancelable(false).setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
@@ -117,7 +115,7 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
     private void showWhether(Parcel parcel) {
         ShowWeatherFragment showWeatherFragment = ShowWeatherFragment.create(parcel);
 
-        getFragmentManager()
+        CitySelectFragment.fragmentManager
                 .beginTransaction()
                 .replace(R.id.frame_show, showWeatherFragment) // замена фрагмента
                 .addToBackStack(null)
@@ -136,7 +134,7 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
         autoCompleteTextView.setAdapter(adapter);
     }
 
-    private void initRetorfit() {
+    private void initRetrofit() {
         Retrofit retrofit;
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://api.openweathermap.org/") //Базовая часть адреса
@@ -145,33 +143,46 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
         openWeather = retrofit.create(OpenWeather.class); //Создаем объект, при помощи которого будем выполнять запросы
     }
 
-    private void requestRetrofit(String city, String keyApi) {
-        if (true) {
-            System.out.println("Находимся в блоке метода requestRetrofit");
-        }
+    private void requestRetrofit(String city, String keyApi, AutoCompleteTextView autoCompleteTextView, Context context) {
+        AppClass.parcel.setCityName(autoCompleteTextView.getText().toString());
+        autoCompleteTextView.setText(null);
+        autoCompleteTextView.clearFocus();
+        Handler handler = new Handler();
         openWeather.loadWeather(city, keyApi)
                 .enqueue(new Callback<WeatherRequest>() {
                     @Override
                     public void onResponse(Call<WeatherRequest> call, Response<WeatherRequest> response) {
-                        if (true) {
-                            System.out.println("Находимся в блоке метода onResponse");
-                        }
+
                         if (response.body() != null) {
                             data = new DataWeather();
-
-                            System.out.println("data = " + data);
-                            parcel = data.initData(response.body(), autoCompleteTextView);
-                            weatherRequest = response.body();
-
+                            data.initData(response.body());
+                            showWhether(AppClass.parcel);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<WeatherRequest> call, Throwable t) {
-                        if (true) {
-                            System.out.println("Находимся в блоке метода onFailure");
+                        if (t instanceof FileNotFoundException) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    makeSimpleDialog(R.string.not_found_city, context);
+                                }
+                            });
+
                         }
+                        if (t instanceof UnknownHostException) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    makeSimpleDialog(R.string.not_connection, context);
+                                }
+                            });
+
+                        }
+                        t.printStackTrace();
                     }
+
                 });
     }
 

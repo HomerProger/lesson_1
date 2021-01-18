@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.lesson1.Constants;
 import com.example.lesson1.R;
@@ -15,6 +16,7 @@ import com.example.lesson1.R;
 public class CitySelectFragment extends Fragment implements Constants {
 
 DialogFragment dlgFragment;
+static FragmentManager fragmentManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ DialogFragment dlgFragment;
     public void onViewCreated(View view, Bundle saveInstanceState) {
 
         super.onViewCreated(view, saveInstanceState);
-
+fragmentManager=getFragmentManager();
         ImageButton buttonGo = view.findViewById(R.id.button3);
         buttonGo.setOnClickListener((v) -> {
             dlgFragment.show(getFragmentManager(),"dialogFragment");
