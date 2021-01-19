@@ -10,7 +10,7 @@
     <string name="city_selection">Сhoose a city</string>
     <string name="button1">Go!</string>
     <string name="precipitation">Precipitation</string>
-    <string name="pressure">Pressure,hPa</string>
+    <string name="pressure">Pressure,mmHg</string>
     <string name="choose_parameter">Choose parameter</string>
     <string name="wind">Wind, m/s</string>
     <string name="temperature">Temperature</string>
@@ -31,6 +31,15 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="humidity">Humidity,%</string>
     <string name="temp">Temperature,°C </string>
+    <string name="temp_mark">°C </string>
+    <string name="humidity_mark">%</string>
+    <string name="wind_mark">m/s</string>
+    <string name="pressure_mark">mmHg</string>
+    <string name="request_history">Request history</string>
+    <string name="attention">Attention!</string>
+    <string name="empty_request">Empty request</string>
+    <string name="not_found_city">City is not found</string>
+    <string name="not_connection">No connection</string>
 
 
     <string-array name="cities">
