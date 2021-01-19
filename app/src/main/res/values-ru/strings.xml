@@ -11,9 +11,9 @@
     <string name="city_selection">Введите название города</string>
     <string name="button1">Перейти</string>
     <string name="precipitation">Осадки</string>
-    <string name="pressure">Давление</string>
+    <string name="pressure">Давление, гПа</string>
     <string name="choose_parameter">Выбрать параметр</string>
-    <string name="wind">Ветер</string>
+    <string name="wind">Ветер, м/с</string>
     <string name="temperature">Температура</string>
     <string name="go">Вперед!</string>
     <string name="enter_city">Введите город</string>
@@ -22,11 +22,20 @@
     <string name="information">О программе</string>
     <string name="text_about_app">
           Погодное приложение\n
-     Автор: Homerproger\n
-        2020 год
-
+          Автор: Homerproger\n
+          2020 год
     </string>
+    <string name="home">Домой</string>
+    <string name="history">История</string>
+    <string name="favorites">Избранные города</string>
+    <string name="additionally">Дополнительно</string>
+    <string name="info_nav">Информация о разработчике</string>
+    <string name="navigation_drawer_open">Открыть панель навигации</string>
+    <string name="navigation_drawer_close">Закрыть панель навигации</string>
+
     <string name="change_theme">Сменить тему</string>
+    <string name="humidity">Влажность,%</string>
+    <string name="temp">Температура,°C</string>
 
 
     <string-array name="cities">

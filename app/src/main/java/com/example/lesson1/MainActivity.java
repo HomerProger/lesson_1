@@ -1,10 +1,15 @@
 package com.example.lesson1;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -24,10 +29,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
     private Toolbar toolbar;
     //Код для возвращение результата настроек  темы на главный экран
     private static final int SETTING_CODE = 88;
@@ -38,7 +44,7 @@ public class MainActivity extends BaseActivity{
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        initDrawer(toolbar);
     }
 
     @Override
@@ -78,5 +84,36 @@ public class MainActivity extends BaseActivity{
             recreate();
         }
 
+    }
+    private void initDrawer(Toolbar toolbar) {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.nav_home:
+                // TODO:
+                break;
+            case R.id.nav_history:
+
+                break;
+            case R.id.nav_favorites:
+                break;
+            case R.id.nav_about:
+                break;
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

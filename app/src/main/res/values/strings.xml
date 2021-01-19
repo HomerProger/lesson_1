@@ -10,9 +10,9 @@
     <string name="city_selection">Сhoose a city</string>
     <string name="button1">Go!</string>
     <string name="precipitation">Precipitation</string>
-    <string name="pressure">Pressure</string>
+    <string name="pressure">Pressure,hPa</string>
     <string name="choose_parameter">Choose parameter</string>
-    <string name="wind">Wind</string>
+    <string name="wind">Wind, m/s</string>
     <string name="temperature">Temperature</string>
     <string name="go">Go!</string>
     <string name="enter_city">Enter city</string>
@@ -22,6 +22,16 @@
     <string name="text_about_app">Погодное приложение\n
         Автор homerproger</string>
     <string name="change_theme">Change theme</string>
+    <string name="home">Home</string>
+    <string name="history">History</string>
+    <string name="favorites">Favorites cities</string>
+    <string name="additionally">Additionally</string>
+    <string name="info_nav">Information</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="humidity">Humidity,%</string>
+    <string name="temp">Temperature,°C </string>
+
 
     <string-array name="cities">
         <item>Moscow</item>

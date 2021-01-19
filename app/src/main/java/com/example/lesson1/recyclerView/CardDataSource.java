@@ -1,7 +1,9 @@
-package com.example.lesson1;
+package com.example.lesson1.recyclerView;
 
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+
+import com.example.lesson1.R;
 
 import java.util.ArrayList;
 import java.util.List;

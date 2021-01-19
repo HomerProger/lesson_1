@@ -1,4 +1,4 @@
-package com.example.lesson1;
+package com.example.lesson1.recyclerView;
 
 public class CardData {
     private String date; // дата
