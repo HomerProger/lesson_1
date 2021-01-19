@@ -53,10 +53,16 @@
             android:textSize="18sp" />
 
         <CheckBox
-            android:id="@+id/pressure"
+        android:id="@+id/pressure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pressure"
+        android:textSize="18sp" />
+        <CheckBox
+            android:id="@+id/wind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pressure"
+            android:text="@string/wind"
             android:textSize="18sp" />
 
     </LinearLayout>
