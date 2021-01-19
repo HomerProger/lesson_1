@@ -17,6 +17,7 @@
     <string name="temperature">Температура</string>
     <string name="go">Вперед!</string>
     <string name="enter_city">Введите город</string>
+    <string name="_10days">Прогноз погоды на 10 дней</string>
     <string-array name="cities">
         <item>Москва</item>
         <item>Санкт-Петербург</item>
@@ -31,4 +32,57 @@
         <item>Ростов-на-Дону</item>
         <item>Пермь</item>
     </string-array>
+    <string-array name="dates">
+        <item>20.11.2020</item>
+        <item>21.11.2020</item>
+        <item>22.11.2020</item>
+        <item>23.11.2020</item>
+        <item>24.11.2020</item>
+        <item>25.11.2020</item>
+        <item>26.11.2020</item>
+        <item>27.11.2020</item>
+        <item>28.11.2020</item>
+        <item>29.11.2020</item>
+        <item>30.11.2020</item>
+    </string-array>
+    <string-array name="days">
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
+        <item>Вторник</item>
+        <item>Среда</item>
+        <item>Четверг</item>
+        <item>Пятница</item>
+        <item>Суббота</item>
+        <item>Воскресенье</item>
+        <item>Понедельник</item>
+    </string-array>
+    <string-array name="temperature">
+        <item>+1°C</item>
+        <item>0°C</item>
+        <item>-1°C</item>
+        <item>+1°C</item>
+        <item>+1°C</item>
+        <item>0°C</item>
+        <item>+3°C</item>
+        <item>-3°C</item>
+        <item>-4°C</item>
+        <item>-1°C</item>
+        <item>+2°C</item>
+    </string-array>
+    <string-array name="precipitation">
+        <item>Снег</item>
+        <item>Снег</item>
+        <item>Небольшой снег</item>
+        <item>Небольшой мокрый снег</item>
+        <item>Небольшой снег с дождем</item>
+        <item>Снег с дождем</item>
+        <item>Небольшой снег с дождем</item>
+        <item>Снег</item>
+        <item>Небольшой снег</item>
+        <item>Без осадков</item>
+        <item>Без осадков</item>
+    </string-array>
+
 </resources>

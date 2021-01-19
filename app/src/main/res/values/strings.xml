@@ -16,6 +16,7 @@
     <string name="temperature">Temperature</string>
     <string name="go">Go!</string>
     <string name="enter_city">Enter city</string>
+    <string name="_10days">Прогноз погоды на 10 дней</string>
     <string-array name="cities">
         <item>Moscow</item>
         <item>St.Petersburg</item>
@@ -30,4 +31,59 @@
         <item>Rostov-on-Don</item>
         <item>Perm</item>
     </string-array>
+
+    <string-array name="dates">
+        <item>20.11.2020</item>
+        <item>21.11.2020</item>
+        <item>22.11.2020</item>
+        <item>23.11.2020</item>
+        <item>24.11.2020</item>
+        <item>25.11.2020</item>
+        <item>26.11.2020</item>
+        <item>27.11.2020</item>
+        <item>28.11.2020</item>
+        <item>29.11.2020</item>
+        <item>30.11.2020</item>
+    </string-array>
+
+    <string-array name="days">
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+    </string-array>
+    <string-array name="temperature">
+        <item>+1°C</item>
+        <item>0°C</item>
+        <item>-1°C</item>
+        <item>+1°C</item>
+        <item>+1°C</item>
+        <item>0°C</item>
+        <item>+3°C</item>
+        <item>-3°C</item>
+        <item>-4°C</item>
+        <item>-1°C</item>
+        <item>+2°C</item>
+    </string-array>
+    <string-array name="precipitation">
+        <item>Snow</item>
+        <item>Snow</item>
+        <item>Light snow</item>
+        <item>Light wet snow</item>
+        <item>Light snow with rain</item>
+        <item>Snow with rain</item>
+        <item>Light snow with rain</item>
+        <item>Snow</item>
+        <item>Light snow</item>
+        <item>Without precipitation</item>
+        <item>Without precipitation</item>
+    </string-array>
+
 </resources>
