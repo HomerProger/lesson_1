@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Погодное приложение</string>
+    <string name="app_name">Погода</string>
     <string name="moscow">Москва</string>
     <string name="sunny">Солнечно</string>
     <string name="windless">Штиль</string>
@@ -18,6 +18,17 @@
     <string name="go">Вперед!</string>
     <string name="enter_city">Введите город</string>
     <string name="_10days">Прогноз погоды на 10 дней</string>
+    <string name="settings">Настройки</string>
+    <string name="information">О программе</string>
+    <string name="text_about_app">
+          Погодное приложение\n
+     Автор: Homerproger\n
+        2020 год
+
+    </string>
+    <string name="change_theme">Сменить тему</string>
+
+
     <string-array name="cities">
         <item>Москва</item>
         <item>Санкт-Петербург</item>
