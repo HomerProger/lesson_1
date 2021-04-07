@@ -4,6 +4,9 @@ package com.example.lesson1.fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -12,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,11 +24,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.lesson1.BuildConfig;
 import com.example.lesson1.DataWeather;
+import com.example.lesson1.MainActivity;
 import com.example.lesson1.OpenWeather;
 import com.example.lesson1.Parcel;
 import com.example.lesson1.R;
 import com.example.lesson1.model.WeatherRequest;
 import com.example.lesson1.AppClass;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.io.FileNotFoundException;
 import java.net.UnknownHostException;
@@ -42,7 +50,6 @@ import static com.example.lesson1.Constants.CURRENT_CITY;
 public class DialogFragment extends androidx.fragment.app.DialogFragment {
 
     private DataWeather data;
-
     private AutoCompleteTextView autoCompleteTextView;
     private OpenWeather openWeather;
 
@@ -156,6 +163,42 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
                         if (response.body() != null) {
                             data = new DataWeather();
                             data.initData(response.body());
+                            String backgroundLink;
+                            switch (AppClass.parcel.getMain()){
+                                case "Snow":
+                                    backgroundLink="https://ic.wampi.ru/2021/03/17/snow.jpg";
+                                    break;
+                                case "Rain":
+                                    backgroundLink="https://ic.wampi.ru/2021/04/07/rain_.jpg";
+                                    break;
+                                case "Mist":
+                                    backgroundLink="https://ic.wampi.ru/2021/03/17/mist.png";
+                                    break;
+                                case "Clouds":
+                                    backgroundLink="https://ic.wampi.ru/2021/03/17/clouds.jpg";
+                                    break;
+                                default:
+                                    backgroundLink="https://ic.wampi.ru/2021/03/17/clear.png";
+
+                            }
+
+
+                            Picasso.get().load(backgroundLink).into(new Target() {
+                                @Override
+                                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                    MainActivity.mainLL.setBackground(new BitmapDrawable(bitmap));
+                                }
+
+                                @Override
+                                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+                                }
+
+                                @Override
+                                public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                                }
+                            });
                             showWhether(AppClass.parcel);
                         }
                     }

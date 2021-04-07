@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 
 import com.example.lesson1.fragments.ShowWeatherFragment;
 import com.example.lesson1.menuToolbar.AboutActivity;
@@ -23,14 +24,15 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
-   Parcel parcel;
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+    //  Parcel parcel;
     private Toolbar toolbar;
-    AppClass appClass =new AppClass();
-public static FragmentManager fragmentManager;
-    public AppClass getAppClass() {
-        return appClass;
-    }
+    public static LinearLayout mainLL;
+//    AppClass appClass =new AppClass();
+//public static FragmentManager fragmentManager;
+//    public AppClass getAppClass() {
+//       return appClass;
+//    }
 
     //Код для возвращение результата настроек  темы на главный экран
     private static final int SETTING_CODE = 88;
@@ -40,11 +42,14 @@ public static FragmentManager fragmentManager;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
+        mainLL=findViewById(R.id.mainLinearLayout);
         setSupportActionBar(toolbar);
         initDrawer(toolbar);
+
         if (savedInstanceState == null) {
             AppClass.parcel.setCityName(getResources().getStringArray(R.array.cities)[0]);
-            showWhether(AppClass.parcel);}
+            showWhether(AppClass.parcel);
+        }
     }
 
     @Override
@@ -64,12 +69,12 @@ public static FragmentManager fragmentManager;
         switch (id) {
             case R.id.settings:
                 Snackbar.make(toolbar, "Вы выбрали пункт меню Настройки", Snackbar.LENGTH_LONG).show();
-                Intent intentSettings=new Intent(MainActivity.this, SettingsActivity.class);
-                startActivityForResult(intentSettings,SETTING_CODE);
+                Intent intentSettings = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivityForResult(intentSettings, SETTING_CODE);
                 return true;
             case R.id.about:
                 Snackbar.make(toolbar, "Вы выбрали пункт меню О программе", Snackbar.LENGTH_LONG).show();
-                Intent intentAbout=new Intent(MainActivity.this, AboutActivity.class);
+                Intent intentAbout = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intentAbout);
                 return true;
         }
@@ -80,11 +85,12 @@ public static FragmentManager fragmentManager;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==SETTING_CODE){
+        if (requestCode == SETTING_CODE) {
             recreate();
         }
 
     }
+
     private void initDrawer(Toolbar toolbar) {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -104,7 +110,7 @@ public static FragmentManager fragmentManager;
                 // TODO:
                 break;
             case R.id.nav_history:
-                Intent intentHistory=new Intent(MainActivity.this, RequestHistory.class);
+                Intent intentHistory = new Intent(MainActivity.this, RequestHistory.class);
                 startActivity(intentHistory);
                 break;
             case R.id.nav_favorites:

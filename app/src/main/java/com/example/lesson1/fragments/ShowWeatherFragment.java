@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lesson1.MainActivity;
 import com.example.lesson1.Parcel;
 import com.example.lesson1.R;
 import com.example.lesson1.bottomRecyclerView.CardDataApadter;

@@ -9,6 +9,8 @@ public class Parcel implements Serializable {
     private String pressure;
     private String humidity;
     private String windSpeed;
+    private String main;
+
 
     public String getCityName() {
         return cityName;
@@ -28,6 +30,10 @@ public class Parcel implements Serializable {
 
     public String getWindSpeed() {
         return windSpeed;
+    }
+
+    public String getMain() {
+        return main;
     }
 
     public void setCityName(String cityName) {
@@ -53,5 +59,9 @@ public class Parcel implements Serializable {
 
     public void setWindSpeed(String windSpeed) {
         this.windSpeed = windSpeed;
+    }
+
+    public void setMain(String s, String main) {
+        this.main = main;
     }
 }

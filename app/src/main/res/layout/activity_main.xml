@@ -9,9 +9,10 @@
     tools:openDrawer="start">
 
     <LinearLayout
+        android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/aaaaa"
+        android:background="@drawable/clear"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
