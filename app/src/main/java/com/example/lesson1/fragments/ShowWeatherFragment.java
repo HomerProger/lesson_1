@@ -1,11 +1,10 @@
-package com.example.lesson1;
+package com.example.lesson1.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
@@ -15,25 +14,25 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.lesson1.recyclerView.CardDataApadter;
-import com.example.lesson1.recyclerView.CardDataSourceBuilder;
-import com.example.lesson1.recyclerView.DataSource;
+import com.example.lesson1.MainActivity;
+import com.example.lesson1.Parcel;
+import com.example.lesson1.R;
+import com.example.lesson1.bottomRecyclerView.CardDataApadter;
+import com.example.lesson1.bottomRecyclerView.CardDataSourceBuilder;
+import com.example.lesson1.bottomRecyclerView.DataSource;
 import com.example.lesson1.requestHistory.CityParcel;
-import com.example.lesson1.requestHistory.DataRequestHistory;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.lesson1.AppClass;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 public class ShowWeatherFragment extends Fragment {
 
-    public static final String PARCEL = "parcel";
-    CityParcel cityParcel;
-   DataRequestHistory dataRequestHistory;
+    private static final String PARCEL = "parcel";
+    private CityParcel cityParcel;
+    private AppClass appClass;
 
     public static ShowWeatherFragment create(Parcel parcel) {
         ShowWeatherFragment showWeatherFragment = new ShowWeatherFragment();
@@ -82,10 +81,10 @@ public class ShowWeatherFragment extends Fragment {
         } else {
             parcel = getParcel();
             cityName.setText(parcel.getCityName());
-            if(parcel.getTemperature()!=null) {
-                dataRequestHistory=new DataRequestHistory();
-                cityParcel=new CityParcel(parcel.getCityName(),getDate(),getTime(),parcel.getTemperature()+" "+getString(R.string.temp_mark));
-               dataRequestHistory.getCitiesList().add(cityParcel);
+            if (parcel.getTemperature() != null) {
+                appClass = new AppClass();
+                cityParcel = new CityParcel(parcel.getCityName(), getDate(), getTime(), parcel.getTemperature() + " " + getString(R.string.temp_mark));
+                appClass.getCitiesList().add(cityParcel);
                 temperature.setText(parcel.getTemperature() + "  " + getString(R.string.temp_mark));
                 temperature.setTextSize(26);
                 pressure.setText(parcel.getPressure() + "  " + getString(R.string.pressure_mark));
@@ -95,8 +94,7 @@ public class ShowWeatherFragment extends Fragment {
                 wind.setText(parcel.getWindSpeed() + "  " + getString(R.string.wind_mark));
                 wind.setTextSize(26);
             }
-            }
-
+        }
 
 
         initDataSource();

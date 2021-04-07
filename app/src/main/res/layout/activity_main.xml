@@ -9,9 +9,10 @@
     tools:openDrawer="start">
 
     <LinearLayout
+        android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/aaaaa"
+        android:background="@drawable/clear"
         android:orientation="vertical">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -30,16 +31,16 @@
         <fragment
 
             android:id="@+id/citySelect"
-            android:name="com.example.lesson1.CitySelectFragment"
+            android:name="com.example.lesson1.fragments.CitySelectFragment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2" />
+            android:layout_height="60dp"
+       />
 
         <FrameLayout
             android:id="@+id/frame_show"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="9"
+            android:layout_weight="1"
             />
 
     </LinearLayout>

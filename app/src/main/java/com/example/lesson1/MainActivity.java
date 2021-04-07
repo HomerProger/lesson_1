@@ -4,49 +4,30 @@ package com.example.lesson1;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
-import android.util.AttributeSet;
-import android.view.InflateException;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
-import com.example.lesson1.requestHistory.CityParcel;
-import com.example.lesson1.requestHistory.DataRequestHistory;
+import com.example.lesson1.fragments.ShowWeatherFragment;
+import com.example.lesson1.menuToolbar.AboutActivity;
+import com.example.lesson1.menuToolbar.SettingsActivity;
 import com.example.lesson1.requestHistory.RequestHistory;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
-import java.util.List;
 
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
     private Toolbar toolbar;
-    DataRequestHistory dataRequestHistory=new DataRequestHistory();
-
-    public DataRequestHistory getDataRequestHistory() {
-        return dataRequestHistory;
-    }
-
+    public static LinearLayout mainLL;
     //Код для возвращение результата настроек  темы на главный экран
     private static final int SETTING_CODE = 88;
 
@@ -55,8 +36,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
+        mainLL=findViewById(R.id.mainLinearLayout);
         setSupportActionBar(toolbar);
         initDrawer(toolbar);
+
+        if (savedInstanceState == null) {
+            AppClass.parcel.setCityName(getResources().getStringArray(R.array.cities)[0]);
+            showWhether(AppClass.parcel);
+        }
     }
 
     @Override
@@ -76,12 +63,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (id) {
             case R.id.settings:
                 Snackbar.make(toolbar, "Вы выбрали пункт меню Настройки", Snackbar.LENGTH_LONG).show();
-                Intent intentSettings=new Intent(MainActivity.this, SettingsActivity.class);
-                startActivityForResult(intentSettings,SETTING_CODE);
+                Intent intentSettings = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivityForResult(intentSettings, SETTING_CODE);
                 return true;
             case R.id.about:
                 Snackbar.make(toolbar, "Вы выбрали пункт меню О программе", Snackbar.LENGTH_LONG).show();
-                Intent intentAbout=new Intent(MainActivity.this, AboutActivity.class);
+                Intent intentAbout = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intentAbout);
                 return true;
         }
@@ -92,11 +79,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==SETTING_CODE){
+        if (requestCode == SETTING_CODE) {
             recreate();
         }
 
     }
+
     private void initDrawer(Toolbar toolbar) {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -116,7 +104,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 // TODO:
                 break;
             case R.id.nav_history:
-                Intent intentHistory=new Intent(MainActivity.this, RequestHistory.class);
+                Intent intentHistory = new Intent(MainActivity.this, RequestHistory.class);
                 startActivity(intentHistory);
                 break;
             case R.id.nav_favorites:
@@ -128,5 +116,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    private void showWhether(Parcel parcel) {
+        ShowWeatherFragment showWeatherFragment = ShowWeatherFragment.create(parcel);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_show, showWeatherFragment) // замена фрагмента
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
+
     }
 }

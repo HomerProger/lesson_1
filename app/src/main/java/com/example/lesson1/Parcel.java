@@ -1,29 +1,17 @@
 package com.example.lesson1;
 
-        import com.example.lesson1.requestHistory.DataRequestHistory;
-
         import java.io.Serializable;
 
 
 public class Parcel implements Serializable {
-    private final String cityName;
+    private String cityName;
     private String temperature;
     private String pressure;
     private String humidity;
     private String windSpeed;
+    private String main;
 
 
-    public Parcel(String cityName, String temperature, String pressure, String humidity, String windSpeed) {
-        this.cityName = cityName;
-        this.temperature = temperature;
-        this.pressure = pressure;
-        this.humidity = humidity;
-        this.windSpeed = windSpeed;
-
-    }
-    public Parcel(String cityName) {
-        this.cityName = cityName;
-    }
     public String getCityName() {
         return cityName;
     }
@@ -44,5 +32,36 @@ public class Parcel implements Serializable {
         return windSpeed;
     }
 
+    public String getMain() {
+        return main;
+    }
 
+    public void setCityName(String cityName) {
+
+        this.cityName = firstUpperCase(cityName);
+    }
+    private String firstUpperCase(String word) {
+        if (word == null || word.isEmpty()) return ""; //или return word;
+        return word.substring(0, 1).toUpperCase() + word.substring(1);
+    }
+
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
+    }
+
+    public void setPressure(String pressure) {
+        this.pressure = pressure;
+    }
+
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+
+    public void setWindSpeed(String windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
+    public void setMain(String s, String main) {
+        this.main = main;
+    }
 }

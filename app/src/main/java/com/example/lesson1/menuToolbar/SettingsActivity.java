@@ -1,4 +1,4 @@
-package com.example.lesson1;
+package com.example.lesson1.menuToolbar;
 
 import android.os.Bundle;
 import android.widget.CompoundButton;
@@ -7,6 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+
+import com.example.lesson1.BaseActivity;
+import com.example.lesson1.R;
 
 public class SettingsActivity extends BaseActivity {
 private Toolbar toolbar;

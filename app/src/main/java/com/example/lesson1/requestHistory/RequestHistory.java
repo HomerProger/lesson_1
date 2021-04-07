@@ -1,16 +1,13 @@
 package com.example.lesson1.requestHistory;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.lesson1.AppClass;
 import com.example.lesson1.BaseActivity;
 import com.example.lesson1.Constants;
 import com.example.lesson1.R;
@@ -40,8 +37,8 @@ public class RequestHistory extends BaseActivity implements Constants {
     }
 
     private List<CityParcel> initData() {
-        DataRequestHistory dataRequestHistory = (DataRequestHistory) getApplication();
-        return dataRequestHistory.getCitiesList();
+        AppClass appClass = (AppClass) getApplication();
+        return appClass.getCitiesList();
 
     }
 
