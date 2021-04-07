@@ -25,15 +25,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
-    //  Parcel parcel;
+
     private Toolbar toolbar;
     public static LinearLayout mainLL;
-//    AppClass appClass =new AppClass();
-//public static FragmentManager fragmentManager;
-//    public AppClass getAppClass() {
-//       return appClass;
-//    }
-
     //Код для возвращение результата настроек  темы на главный экран
     private static final int SETTING_CODE = 88;
 
